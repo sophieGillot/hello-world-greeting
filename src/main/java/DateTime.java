@@ -3,6 +3,7 @@ package hello;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 /**
+
 **/
 public class DateTime {
 
@@ -13,7 +14,8 @@ public class DateTime {
   int day = time.get(Calendar.DAY_OF_MONTH);
   int month = time.get(Calendar.MONTH) + 1;
   int year = time.get(Calendar.YEAR);
-  
+
+  String  d = day + month + year;  
   System.out.println(hour);
   return hour;
 
