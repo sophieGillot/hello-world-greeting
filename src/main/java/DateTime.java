@@ -15,7 +15,6 @@ public class DateTime {
   int month = time.get(Calendar.MONTH) + 1;
   int year = time.get(Calendar.YEAR);
 
-  String  d = day + month + year;  
   System.out.println(hour);
   return hour;
 
