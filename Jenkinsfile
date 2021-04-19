@@ -12,20 +12,16 @@ pipeline {
        stages {
          // debut teste 
         stage('Teste') {
-          steps {
-            sh 'mvn clean test'
-          }
-          post {
-            always {        
-              junit 'target/surefire-reports/*.xml'
+            steps {
+              sh 'mvn clean test'
             }
          } // Fin stage teste
          //  Debut Compilation
          stage('Compilation') {
-          steps {  
-            sh 'mvn -B -DskipTests clean package'
-         } // Fin compilation
-         // debut Pub
+            steps {  
+              sh 'mvn -B -DskipTests clean package'
+            } // Fin compilation
+         }// debut Pub
          stage('Publication du binaire') {
 
           steps {
@@ -87,4 +83,5 @@ pipeline {
            }
          } //fin stages
        }// fin stage  docker
+    }
  }
