@@ -28,7 +28,7 @@ pipeline {
       
         }
 
-        stage('Analyse statique') {
+  /*      stage('Analyse statique') {
       
           steps {
         
@@ -39,7 +39,7 @@ pipeline {
           }
       
         }
-
+*/
         stage('Compilation') {
     
           steps {  
@@ -51,7 +51,8 @@ pipeline {
         stage('Publication du binaire') {
 
           steps {
-            sh "curl -u admin:nexus --upload-file target/*.war 'http://84.39.43.46:8081/repository/depot_test/test${BUILD_NUMBER}.war'"        
+           // sh "curl -u admin:nexus --upload-file target/*.war 'http://84.39.43.46:8081/repository/depot_test/test${BUILD_NUMBER}.war'"   
+            sh "curl -u admin:nexus --upload-file target/*.war 'http://10.10.20.31:8081/repository/depot_test/test.jar'"
           }
 
         }
