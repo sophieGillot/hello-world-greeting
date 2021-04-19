@@ -1,14 +1,16 @@
 pipeline {
   
   agent none
- 
+ //// 
   stages {
-    
+    // debut Compilation et tests
     stage('Compilation et tests') {
        agent {
           label 'agent_java'
        }
+      // debut stages
        stages {
+         // debut teste 
         stage('Teste') {
           steps {
             sh 'mvn clean test'
@@ -17,20 +19,23 @@ pipeline {
             always {        
               junit 'target/surefire-reports/*.xml'
             }
-         } 
+         } // Fin stage teste
+         //  Debut Compilation
          stage('Compilation') {
           steps {  
             sh 'mvn -B -DskipTests clean package'
-         }
+         } // Fin compilation
+         // debut Pub
          stage('Publication du binaire') {
 
           steps {
            // sh "curl -u admin:nexus --upload-file target/*.war 'http://84.39.43.46:8081/repository/depot_test/test${BUILD_NUMBER}.war'"   
             sh "curl -u admin:nexus --upload-file /home/jenkins/workspace/cker_pipeline_multibranch_master/target/*.war 'http://10.10.20.31:8081/repository/depot_test/hello-${BUILD_NUMBER}.war'"
           }
-         }
-       }
-     }
+         }// fin pub
+       }  // Fin stages
+     } // Fin compi et tests
+      // Debut test deployement
      stage ('Tests de deployement') {
        agent {
          label 'agent_tomcat'
@@ -46,13 +51,15 @@ pipeline {
            steps {
               sh '/home/jenkins/apache-jmeter/bin/jmeter.sh /home/jenkins/test_report.jtl'
            }
+          } 
             stage ('Validation de l\'application') {
               steps {
                 sh "curl -u admin:nexus --upload-file /home/jenkins/tomcat/webapps/app.war 'http://10.10.20.31:8081/repository/hello_fiable/app_fiable${BUILD_NUMBER}.war'"   
               }
             }
-         }
-       } // fin stage agent_tomcat
+         } // Fin stages
+     } // fin test delpoyement agent_tomcat
+         ///////////////////////////
        stage ('Création de l\'image') {
          agent {
            label 'agent docker' 
@@ -82,4 +89,4 @@ pipeline {
        }// fin stage  docker
      }
  }
-    }
+    
