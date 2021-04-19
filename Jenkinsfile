@@ -30,6 +30,7 @@ pipeline {
           }
          }
        }
+     }
      stage ('Tests de deployement') {
        agent {
          label 'agent_tomcat'
@@ -51,7 +52,7 @@ pipeline {
               }
             }
          }
-       }
+       } // fin stage agent_tomcat
        stage ('Création de l\'image') {
          agent {
            label 'agent docker' 
@@ -77,7 +78,7 @@ pipeline {
                 sh 'docker push sophiegillot/tomcat_app'
              }
            }
-         }
-       }
+         } //fin stages
+       }// fin stage  docker
      }
-  } 
+ }
