@@ -15,7 +15,7 @@ pipeline {
         stage('Test unitaire & publication') {
     
           steps {
-            sh 'mvn test'
+            sh 'mvn clean test'
           }
       
           post {
