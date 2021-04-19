@@ -82,3 +82,4 @@ pipeline {
        }// fin stage  docker
      }
  }
+    }
