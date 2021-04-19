@@ -52,7 +52,7 @@ pipeline {
 
           steps {
            // sh "curl -u admin:nexus --upload-file target/*.war 'http://84.39.43.46:8081/repository/depot_test/test${BUILD_NUMBER}.war'"   
-            sh "curl -u admin:nexus --upload-file /home/jenkins/workspace/cker_pipeline_multibranch_master/target/hello-${BUILD_NUMBER}.war 'http://10.10.20.31:8081/repository/depot_test/hello-${BUILD_NUMBER}.war'"
+            sh "curl -u admin:nexus --upload-file /home/jenkins/workspace/cker_pipeline_multibranch_master/target/*.war 'http://10.10.20.31:8081/repository/depot_test/hello-${BUILD_NUMBER}.war'"
           }
 
         }
