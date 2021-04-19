@@ -1,14 +1,14 @@
 pipeline {
   
-  agent none
+
+  agent {
+        label 'agent_java'
+  }
   
   stages {
     
     stage('Compilation et tests') {
 
-      agent {
-        label 'agent_java'
-      }
 
       stages {
   
