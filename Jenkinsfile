@@ -46,7 +46,7 @@ pipeline {
           stage ('test de performance') {
            steps {
              sh 'ls -l /home/jenkins'
-              sh '/home/jenkins/apache-jmeter/bin/jmeter.sh /home/jenkins/test_report.jtl'
+              sh '/home/jenkins/apache-jmeter/bin/jmeter.sh /home/jenkins/jmeter.jmx'
            }
           } 
             stage ('Validation de l\'application') {
