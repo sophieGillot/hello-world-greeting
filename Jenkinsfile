@@ -47,7 +47,7 @@ pipeline {
            steps {
              sh 'ls -la /home/jenkins' 
               sh 'ls -la /home/jenkins/apache-jmeter'
-              sh '/home/jenkins/apache-jmeter/bin/jmeter.sh /home/jenkins/jmeter.jmx'
+              sh '/home/jenkins/apache-jmeter/bin/jmeter.sh -n -t /home/jenkins/jmeter.jmx -l /home/jenkins/test_report.jtl'
            }
           } 
             stage ('Validation de l\'application') {
